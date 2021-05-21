@@ -18,7 +18,10 @@ class MyDataParallel(nn.DataParallel):
   
             
 def to_var(x):
-    return Variable(torch.from_numpy(x).cuda())
+    if torch.cuda.is_available():
+        return Variable(torch.from_numpy(x).cuda())
+    else:
+        return Variable(torch.from_numpy(x))
 
 
 class Config(object):
@@ -306,8 +309,8 @@ class Config(object):
         self.model = model
         self.trainModel = self.model(config=self)
         #self.trainModel = nn.DataParallel(self.trainModel, device_ids=[2,3,4])
-        
-        self.trainModel.cuda()
+        if torch.cuda.is_available():
+            self.trainModel.cuda()
         if self.optimizer != None:
             pass
         elif self.opt_method == "Adagrad" or self.opt_method == "adagrad":
@@ -335,7 +338,7 @@ class Config(object):
                 lr=self.alpha,
                 weight_decay=self.weight_decay,
             )
-        print("Finish initializing")
+        print("Finish Training Initializing")
 
     def set_test_model(self, model, path=None):
         print("Initializing test model...")
@@ -344,9 +347,10 @@ class Config(object):
         if path == None:
             path = os.path.join(self.result_dir, self.model.__name__ + ".ckpt")
         self.testModel.load_state_dict(torch.load(path))
-        self.testModel.cuda()
+        if torch.cuda.is_available():
+            self.testModel.cuda()
         self.testModel.eval()
-        print("Finish initializing")
+        print("Finish Test Initializing")
 
     def sampling(self):
         self.lib.sampling(
