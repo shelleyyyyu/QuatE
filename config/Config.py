@@ -145,6 +145,7 @@ class Config(object):
         self.validTotal = self.lib.getValidTotal()
 
         self.batch_size = int(self.trainTotal / self.nbatches)
+        print('Batch Size: ' + str(self.batch_size))
         self.batch_seq_size = self.batch_size * (
             1 + self.negative_ent + self.negative_rel
         )
