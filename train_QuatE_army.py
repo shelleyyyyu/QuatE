@@ -9,7 +9,7 @@ def main(args):
     con.set_in_path(args.dataset)
     con.set_work_threads(8)
     con.set_train_times(40000)
-    con.set_nbatches(10)
+    con.set_nbatches(500)
     con.set_alpha(0.1)
     con.set_bern(1)
     con.set_dimension(100)
