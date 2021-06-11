@@ -19,8 +19,8 @@ def main(args):
     con.set_ent_neg_rate(1)
     con.set_rel_neg_rate(0)
     con.set_opt_method("adagrad")
-    con.set_save_steps(5000)
-    con.set_valid_steps(5000)
+    con.set_save_steps(args.valid_steps)
+    con.set_valid_steps(args.valid_steps)
     con.set_early_stopping_patience(10)
     CHECKPOINT_DIR = os.path.basename(os.path.dirname(args.dataset))+'_checkpoint'
     con.set_checkpoint_dir(CHECKPOINT_DIR)
@@ -35,6 +35,7 @@ def main(args):
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='transE_argument')
+	parser.add_argument('--valid_steps', type=int, default=5000, help='dataset directory')
 	parser.add_argument('--dataset', type=str, default="./benchmarks/ablation/", help='dataset directory')
 	args = parser.parse_args()
 	main(args)
