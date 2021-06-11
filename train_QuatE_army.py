@@ -35,6 +35,6 @@ def main(args):
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='transE_argument')
-	parser.add_argument('--dataset', type=str, default="./benchmarks/army_clean_all_shuffle_small/", help='dataset directory')
+	parser.add_argument('--dataset', type=str, default="./benchmarks/ablation/", help='dataset directory')
 	args = parser.parse_args()
 	main(args)

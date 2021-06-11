@@ -347,6 +347,7 @@ class Config(object):
         self.testModel = self.model(config=self)
         if path == None:
             path = os.path.join(self.result_dir, self.model.__name__ + ".ckpt")
+        print('Model File: '+path)
         self.testModel.load_state_dict(torch.load(path))
         if torch.cuda.is_available():
             self.testModel.cuda()
