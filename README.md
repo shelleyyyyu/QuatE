@@ -11,7 +11,7 @@ STEP:
 
 1.  export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/local/lib64:/usr/lib64
 2.  CUDA_VISIBLE_DEVICES=0 python3 train_QuatE_dataset.py
-
+3.  CUDA_VISIBLE_DEVICES=0 python3 test_QuatE_dataset.py
 
 
 # Citation

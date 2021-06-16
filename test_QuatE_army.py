@@ -34,7 +34,7 @@ def main(args):
         con.set_test_model(QuatE, RESTORE_CHECKPOINT_FNAME)
     else:
         con.set_test_model(QuatE)
-    con.train()
+    con.test()
 
 
 if __name__ == '__main__':
