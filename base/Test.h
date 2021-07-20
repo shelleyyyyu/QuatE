@@ -75,15 +75,15 @@ void testHead(REAL *con) {
         }
     }
 
-    if (l_filter_s < 10) l_filter_tot += 1;
-    if (l_s < 10) l_tot += 1;
+    if (l_filter_s < 6) l_filter_tot += 1;
+    if (l_s < 6) l_tot += 1;
     if (l_filter_s < 3) l3_filter_tot += 1;
     if (l_s < 3) l3_tot += 1;
     if (l_filter_s < 1) l1_filter_tot += 1;
     if (l_s < 1) l1_tot += 1;
 
-    if (l_filter_s_constrain < 10) l_filter_tot_constrain += 1;
-    if (l_s_constrain < 10) l_tot_constrain += 1;
+    if (l_filter_s_constrain < 6) l_filter_tot_constrain += 1;
+    if (l_s_constrain < 6) l_tot_constrain += 1;
     if (l_filter_s_constrain < 3) l3_filter_tot_constrain += 1;
     if (l_s_constrain < 3) l3_tot_constrain += 1;
     if (l_filter_s_constrain < 1) l1_filter_tot_constrain += 1;
@@ -137,15 +137,15 @@ void testTail(REAL *con) {
         
     }
 
-    if (r_filter_s < 10) r_filter_tot += 1;
-    if (r_s < 10) r_tot += 1;
+    if (r_filter_s < 6) r_filter_tot += 1;
+    if (r_s < 6) r_tot += 1;
     if (r_filter_s < 3) r3_filter_tot += 1;
     if (r_s < 3) r3_tot += 1;
     if (r_filter_s < 1) r1_filter_tot += 1;
     if (r_s < 1) r1_tot += 1;
 
-    if (r_filter_s_constrain < 10) r_filter_tot_constrain += 1;
-    if (r_s_constrain < 10) r_tot_constrain += 1;
+    if (r_filter_s_constrain < 6) r_filter_tot_constrain += 1;
+    if (r_s_constrain < 6) r_tot_constrain += 1;
     if (r_filter_s_constrain < 3) r3_filter_tot_constrain += 1;
     if (r_s_constrain < 3) r3_tot_constrain += 1;
     if (r_filter_s_constrain < 1) r1_filter_tot_constrain += 1;
@@ -197,7 +197,7 @@ void test_link_prediction() {
 
     printf("no type constraint results:\n");
     
-    printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
+    printf("metric:\t\t\t MRR \t\t MR \t\t hit@6 \t hit@3  \t hit@1 \n");
     printf("l(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", l_reci_rank, l_rank, l_tot, l3_tot, l1_tot);
     printf("r(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", r_reci_rank, r_rank, r_tot, r3_tot, r1_tot);
     printf("averaged(raw):\t\t %f \t %f \t %f \t %f \t %f \n",
@@ -238,7 +238,7 @@ void test_link_prediction() {
 
     printf("type constraint results:\n");
     
-    printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
+    printf("metric:\t\t\t MRR \t\t MR \t\t hit@6 \t hit@3  \t hit@1 \n");
     printf("l(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", l_reci_rank_constrain, l_rank_constrain, l_tot_constrain, l3_tot_constrain, l1_tot_constrain);
     printf("r(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", r_reci_rank_constrain, r_rank_constrain, r_tot_constrain, r3_tot_constrain, r1_tot_constrain);
     printf("averaged(raw):\t\t %f \t %f \t %f \t %f \t %f \n",

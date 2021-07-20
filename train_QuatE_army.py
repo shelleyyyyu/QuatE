@@ -22,6 +22,7 @@ def main(args):
     con.set_save_steps(args.valid_steps)
     con.set_valid_steps(args.valid_steps)
     con.set_early_stopping_patience(10)
+
     CHECKPOINT_DIR = os.path.basename(os.path.dirname(args.dataset))+'_checkpoint'
     con.set_checkpoint_dir(CHECKPOINT_DIR)
     RESULT_DIR = os.path.basename(os.path.dirname(args.dataset))+'_result'

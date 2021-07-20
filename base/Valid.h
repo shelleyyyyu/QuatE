@@ -51,9 +51,9 @@ void validHead(REAL *con) {
 	    }
 	}
     }
-    if (l_filter_s < 10) l_valid_filter_tot += 1;
+    if (l_filter_s < 6) l_valid_filter_tot += 1;
     lastValidHead ++;
-  //  printf("head: l_valid_filter_tot = %f | l_filter_hit10 = %f\n", l_valid_filter_tot, l_valid_filter_tot / lastValidHead);
+  //  printf("head: l_valid_filter_tot = %f | l_filter_hit6 = %f\n", l_valid_filter_tot, l_valid_filter_tot / lastValidHead);
 }
 
 extern "C"
@@ -71,19 +71,19 @@ void validTail(REAL *con) {
 	    }
 	}
     }
-    if (r_filter_s < 10) r_valid_filter_tot += 1;
+    if (r_filter_s < 6) r_valid_filter_tot += 1;
     lastValidTail ++;
-//    printf("tail: r_valid_filter_tot = %f | r_filter_hit10 = %f\n", r_valid_filter_tot, r_valid_filter_tot / lastValidTail);
+//    printf("tail: r_valid_filter_tot = %f | r_filter_hit6 = %f\n", r_valid_filter_tot, r_valid_filter_tot / lastValidTail);
 }
 
-REAL validHit10 = 0;
+REAL validHit6 = 0;
 extern "C"
-REAL  getValidHit10() {
+REAL  getValidHit6() {
     l_valid_filter_tot /= validTotal;
     r_valid_filter_tot /= validTotal;
-    validHit10 = (l_valid_filter_tot + r_valid_filter_tot) / 2;
-   // printf("result: %f\n", validHit10);
-    return validHit10;
+    validHit6 = (l_valid_filter_tot + r_valid_filter_tot) / 2;
+   // printf("result: %f\n", validHit6);
+    return validHit6;
 }
 
 #endif

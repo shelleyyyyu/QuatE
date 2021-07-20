@@ -95,7 +95,7 @@ class Config(object):
             ctypes.c_void_p,
         ]
         """restype"""
-        self.lib.getValidHit10.restype = ctypes.c_float
+        self.lib.getValidHit6.restype = ctypes.c_float
         """set essential parameters"""
         self.in_path = "./"
         self.batch_size = 100
@@ -412,13 +412,13 @@ class Config(object):
             )
             res = self.test_one_step(model, self.valid_h, self.valid_t, self.valid_r)
             self.lib.validTail(res.__array_interface__["data"][0])
-        return self.lib.getValidHit10()
+        return self.lib.getValidHit6()
 
     def train(self):
         if not os.path.exists(self.checkpoint_dir):
             os.mkdir(self.checkpoint_dir)
         best_epoch = 0
-        best_hit10 = 0.0
+        best_hit6 = 0.0
         best_model = None
         bad_counts = 0
         for epoch in range(self.train_times):
@@ -433,17 +433,17 @@ class Config(object):
                 self.save_checkpoint(self.trainModel.state_dict(), epoch)
             if (epoch + 1) % self.valid_steps == 0:
                 print("Epoch %d has finished, validating..." % (epoch))
-                hit10 = self.valid(self.trainModel)
-                if hit10 > best_hit10:
-                    best_hit10 = hit10
+                hit6 = self.valid(self.trainModel)
+                if hit6 > best_hit6:
+                    best_hit6 = hit6
                     best_epoch = epoch
                     best_model = self.trainModel.state_dict()
-                    print("Best model | hit@10 of valid set is %f" % (best_hit10))
+                    print("Best model | hit@6 of valid set is %f" % (best_hit6))
                     bad_counts = 0
                 else:
                     print(
-                        "Hit@10 of valid set is %f | bad count is %d"
-                        % (hit10, bad_counts)
+                        "Hit@6 of valid set is %f | bad count is %d"
+                        % (hit6, bad_counts)
                     )
                     bad_counts += 1
                 if bad_counts == self.early_stopping_patience:
@@ -452,8 +452,8 @@ class Config(object):
         if best_model == None:
             best_model = self.trainModel.state_dict()
             best_epoch = self.train_times - 1
-            best_hit10 = self.valid(self.trainModel)
-        print("Best epoch is %d | hit@10 of valid set is %f" % (best_epoch, best_hit10))
+            best_hit6 = self.valid(self.trainModel)
+        print("Best epoch is %d | hit@6 of valid set is %f" % (best_epoch, best_hit6))
         print("Store checkpoint of best result at epoch %d..." % (best_epoch))
         if not os.path.isdir(self.result_dir):
             os.mkdir(self.result_dir)
