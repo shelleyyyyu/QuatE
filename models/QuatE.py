@@ -37,7 +37,7 @@ class QuatE(Model):
             self.emb_y_a.weight.data = j.type_as(self.emb_y_a.weight.data)
             self.emb_z_a.weight.data = k.type_as(self.emb_z_a.weight.data)
 
-            s, x, y, z = self.quaternion_init(self.config.entTotal, self.config.hidden_size)
+            s, x, y, z = self.quaternion_init(self.config.relTotal, self.config.hidden_size)
             s, x, y, z = torch.from_numpy(s), torch.from_numpy(x), torch.from_numpy(y), torch.from_numpy(z)
             self.rel_s_b.weight.data = s.type_as(self.rel_s_b.weight.data)
             self.rel_x_b.weight.data = x.type_as(self.rel_x_b.weight.data)
@@ -77,7 +77,7 @@ class QuatE(Model):
     def loss(self, score, regul, regul2):
         # self.batch_y = ((1.0-0.1)*self.batch_y) + (1.0/self.batch_y.size(1)) /// (1 + (1 + self.batch_y)/2) * 
         return (
-                torch.mean(self.criterion(score * self.batch_y)) + self.config.lmbda * regul +   self.config.lmbda * regul2
+                torch.mean(self.criterion(score * self.batch_y)) + self.config.lmbda * regul + self.config.lmbda * regul2
         )
 
     def forward(self):
