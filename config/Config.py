@@ -431,6 +431,7 @@ class Config(object):
             if (epoch + 1) % self.save_steps == 0:
                 print("Epoch %d has finished, saving..." % (epoch))
                 self.save_checkpoint(self.trainModel.state_dict(), epoch)
+                self.save_embedding_matrix(self.trainModel.state_dict())
             if (epoch + 1) % self.valid_steps == 0:
                 print("Epoch %d has finished, validating..." % (epoch))
                 hit6 = self.valid(self.trainModel)
